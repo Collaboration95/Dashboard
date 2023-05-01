@@ -13,7 +13,7 @@ const login = () => {
     .then(data => {
       const login_verified = Object.keys(data).length;
       if (login_verified === 1) {
-        window.location.href = 'success.html';
+        window.location.href = 'dashboard/MainPage.html';
       } else {
         alert('Invalid username or password');
       }
