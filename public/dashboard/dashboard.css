@@ -2,28 +2,25 @@
     /* Define color variables */
     --primary-color: #063970;
     --color-black: #000000;
-    --secondary-color: #ACD0F1;
+    --secondary-color: #ADD0F1;
+    --secondary-tint:#D6E7F8;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
     --Title-font:42px;
     --SecondaryTitle-font:22px;
     --Button-font:20px;
     --TextBox-font:20px;
-  }
-
-.dashboard-title{
-    font-size:25px;
-    padding:0px 30px 20px 30px;
-    font-size:20px;
 }
 
-.random{
-    background-color:var(--secondary-color);
+.dashboard-title{
+    font-size:27px;
+    padding:0px 30px 20px 30px;
+
 }
 
 .dashboard-item{
-    font-size:20px;
-    padding:5px 30px 5px 30px;
+    font-size:24px;
+
 }
 
 #dashboard{
@@ -33,6 +30,31 @@
     border: 3px solid var(--primary-color);
     width:fit-content;
 }
+
 .dashboard-logout{
     font-size:20px;
 }
+
+.dashboard-row {
+    display: flex;
+    padding:0px 10px 0px 10px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .dashboard-row:hover {
+    background-color: var(--secondary-tint);
+  }
+  
+.dashboard-icons{
+    margin:0px 10px 0px 10px;
+}
+
+.selected{
+    background-color:var(--secondary-color);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
