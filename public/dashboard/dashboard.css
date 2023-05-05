@@ -29,6 +29,7 @@
     border-radius:12px;
     border: 3px solid var(--primary-color);
     width:fit-content;
+    height: fit-content;
 
 }
 
@@ -60,3 +61,21 @@ a {
     text-decoration: none;
   }
   
+
+
+#search-btn{
+        text-align: center;
+
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+
+        border: 3px solid var(--color-black);
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        border-radius: 10px;
+        cursor: pointer;
+
+}

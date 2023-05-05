@@ -1,3 +1,4 @@
+sessionStorage.removeItem("loggedIn");
 const login = () => {
     const username = document.getElementById("Username").value;
     const password = document.getElementById("Password").value;
@@ -14,6 +15,7 @@ const login = () => {
       const login_verified = Object.keys(data).length;
       if (login_verified === 1) {
         window.location.href = 'dashboard/MainPage.html';
+        sessionStorage.setItem("loggedIn", true);
       } else {
         alert('Invalid username or password');
       }

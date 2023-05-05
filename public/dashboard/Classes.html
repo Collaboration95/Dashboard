@@ -29,7 +29,7 @@
             <div class="dashboard-icons"><img src="icons/Folder-open.png"> </div>
             <div class="dashboard-item">Installer Version</div>
         </div>   
-        <div class="dashboard-row" >
+        <div class="dashboard-row" onclick="window.location.href='http://localhost:3000/'">
             <div class="dashboard-icons"><img src="icons/Settings-alt.png"> </div>
             <div class="dashboard-logout">Log Out</div>
         </div>   
@@ -41,17 +41,14 @@
           <select id="class-name" name="class-name"></select>
           <button id="search-btn">Search</button>
         </div>
+        
+        <div class="tablecontainer">
         <table id="record-table">
           <thead>
-            <tr>
-              <th>ID</th>
-              <th>Outcome</th>
-              <th>Installer Branch</th>
-              <th>Class Name</th>
-            </tr>
           </thead>
           <tbody></tbody>
         </table>
+      </div>
       </div>
     
     </div>

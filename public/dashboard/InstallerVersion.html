@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="InstallerVersion.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MainPage</title>
 </head>
 <body>
+  <div class="container-row">
     <div id="dashboard">
         <div class="dashboard-title">Dashboard</div>
         <div class="dashboard-row" onclick="window.location.href='MainPage.html'">
@@ -27,45 +29,35 @@
             <div class="dashboard-icons"><img src="icons/Folder-open.png"> </div>
             <div class="dashboard-item">Installer Version</div>
         </div>   
-        <div class="dashboard-row" >
+        <div class="dashboard-row"onclick="window.location.href='http://localhost:3000/'" >
             <div class="dashboard-icons"><img src="icons/Settings-alt.png"> </div>
             <div class="dashboard-logout">Log Out</div>
         </div>   
       </div>
-   
+      <div class="MainContent">
+        <div class="pagetitle">Installer Version</div>
+        <div class="dataselector">
+          <label for="installer-name">Installer Version :</label>
+          <select id="installer-name" name="installer-name"></select>
+          <button id="search-btn">Search</button>
+        </div>
+        
+        <div class="tablecontainer">
+        <table id="record-table">
+          <thead>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      </div>
+    
+    </div>
 
+    <script src="InstallerVersion.js"></script>
 </body>
 </html>
-    <h1>Installer Version Records</h1>
-    <label for="installer-version">Select Installer Version:</label>
-    <select id="installer-version">
-        <option value="">--Select Installer Version--</option>
-    </select>
-    <button id="search-btn">Search</button>
-    <br><br>
-    <table id="records-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Platform</th>
-                <th>Job Name</th>
-                <th>Job Build Number</th>
-                <th>Installer Branch</th>
-                <th>Installer Version</th>
-                <th>Test ID</th>
-                <th>Test Name</th>
-                <th>Computer Name</th>
-                <th>Duration</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Test Type</th>
-                <th>Outcome</th>
-                <th>Output</th>
-                <th>Test Category</th>
-                <th>Class Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <script src="InstallerVersion.js"></script>
+
+  
+
+
+

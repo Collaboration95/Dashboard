@@ -77,42 +77,58 @@ app.get('/api/sql-data', (req, res) => {
 app.get('/api/class-names/:className', (req, res) => {
   const selectedClassName = req.params.className;
   const sqlQuery = `
-    SELECT * ${table_name.main}
+    SELECT *
+    FROM ${table_name.main}
     WHERE className = '${selectedClassName}'
+  `;
+
+  const getColumnNamesQuery = `
+    SELECT COLUMN_NAME
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = '${table_name.main}' AND TABLE_SCHEMA='test_db'
+    ORDER BY ORDINAL_POSITION
+  `;
+
+  connection.query(getColumnNamesQuery, (error, result) => {
+    if (error) throw error;
+    const header = result.map(res => res.COLUMN_NAME);
+    connection.query(sqlQuery, (error, results, fields) => {
+      if (error) throw error;
+      const data = { header, data: results };
+      res.json(data);
+    });
+  });
+});
+
+app.get('/api/installer-name', (req, res) => {
+  const sqlQuery = `
+    SELECT DISTINCT installer_version
+    FROM ${table_name.main}
   `;
   
   connection.query(sqlQuery, (error, results, fields) => {
     if (error) throw error;
-    const data = results;
+    const data = results.map(result => result.installer_version);
     res.json(data);
   });
 });
 
-// Route to get all unique installer versions
-app.get('/api/unique-installer-versions', (req, res) => {
-    const sqlQuery = `SELECT DISTINCT installer_version FROM ${table_name.main} ORDER BY installer_version`;
+app.get('/api/installer-versions/:installerVersion', (req, res) => {
+  const selectedInstallerVersion = req.params.installerVersion;
+  const sqlQuery = `
+    SELECT * FROM ${table_name.main}
+    WHERE installer_version = '${selectedInstallerVersion}'
+  `;
   
-    connection.query(sqlQuery, (error, results, fields) => {
-      if (error) throw error;
-      const data = results.map((result) => result.installer_version);
-      console.log(data);
-      res.json(data);
-    });
+  connection.query(sqlQuery, (error, results, fields) => {
+    if (error) throw error;
+    const data = {
+      header: Object.keys(results[0]),
+      data: results
+    };
+    res.json(data);
   });
-  
-  // Route to get records of a particular installer version
-  app.get('api/installer-version-records/:installer_version', (req, res) => {
-    const installerVersion = req.query.installer_version;
-    const sqlQuery = `SELECT * FROM ${table_name.main} WHERE installer_version = '${installerVersion}'`;
-  
-    connection.query(sqlQuery, (error, results, fields) => {
-      if (error) throw error;
-      const data = results;
-      console.log(data);
-      res.json(data);
-    });
-  });
-  
+});
 
 app.get('/api/latest-builds', (req, res) => {
     const sqlQuery = `
@@ -134,6 +150,17 @@ app.get('/api/latest-builds', (req, res) => {
     });
 });
 
+app.get('/api/longblob-data', (req, res) => {
+  const id = req.query.id;
+  const sqlData = 'SELECT output FROM ' + table_name.main + ' WHERE id = ?';
+  connection.query(sqlData, [id], (error, results, fields) => {
+    if (error) throw error;
+    console.log(results);
+    const longblobData = results[0].output; 
+    const textData = longblobData.toString("utf-8");
+    res.json({ data: textData });
+  });
+});
 
 app.use(express.static('public'));
 

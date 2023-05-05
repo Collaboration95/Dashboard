@@ -10,4 +10,9 @@ function fetchLatestBuilds() {
       });
   }
   
-fetchLatestBuilds();
+if (sessionStorage.getItem("loggedIn")) {
+  fetchLatestBuilds();
+}
+else{
+  window.location.href='http://localhost:3000/';
+}
