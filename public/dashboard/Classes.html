@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="Classes.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MainPage</title>
 </head>
 <body>
+  <div class="container-row">
     <div id="dashboard">
         <div class="dashboard-title">Dashboard</div>
         <div class="dashboard-row" onclick="window.location.href='MainPage.html'">
@@ -32,6 +34,33 @@
             <div class="dashboard-logout">Log Out</div>
         </div>   
       </div>
+      <div class="MainContent">
+        <div class="pagetitle">Classes</div>
+        <div class="dataselector">
+          <label for="class-name">Class Name:</label>
+          <select id="class-name" name="class-name"></select>
+          <button id="search-btn">Search</button>
+        </div>
+        <table id="record-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Outcome</th>
+              <th>Installer Branch</th>
+              <th>Class Name</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    
+    </div>
 
+    <script src="Classes.js"></script>
 </body>
 </html>
+
+  
+
+
+

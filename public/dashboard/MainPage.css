@@ -1,0 +1,61 @@
+#chartContainer{
+    height:200px;
+    display:flex;
+    justify-content: flex-start;
+    width:240px;
+}
+
+#container{
+    display:flex;
+    flex-direction:column;
+
+    width:100%;
+}
+
+
+
+#container-row{
+    display:flex;
+    flex-direction:row;
+    width:73vw;
+    height: 95vh;
+}
+
+.table{
+    width:100%;
+
+    padding:10px;
+    height: fill;
+    justify-content:center;
+    text-align:center;
+}
+
+.pagetitle{
+    font-size:25px;
+    margin:10px 0px 0px 0px;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+	border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+tr{
+    height: 10px;
+}
+.table-container {
+  display: block;
+  overflow-x: scroll;
+  overflow-y:scroll;
+  height: 440px;
+  transform: scale(1);
+}

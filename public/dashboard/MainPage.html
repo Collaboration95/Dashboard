@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="MainPage.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="DashboardMain.js"></script>
     <title>MainPage</title>
 </head>
-<body>
-    <div id="dashboard">
+    <body>
+        <div id="container-row">
+            <div id="container">
+                <div id="dashboard">
         <div class="dashboard-title">Dashboard</div>
         <div class="dashboard-row selected" onclick="window.location.href='MainPage.html'">
             <div class="dashboard-icons"><img src="icons/Home.png"> </div>
@@ -31,7 +37,21 @@
             <div class="dashboard-icons"><img src="icons/Settings-alt.png"> </div>
             <div class="dashboard-logout">Log Out</div>
         </div>   
-      </div>
-
-</body>
+                </div>
+                <div id="chartContainer"></div>
+            </div>
+            <div class="table">
+                <div class="pagetitle">Test Overview</div>
+                <div class="table-container">
+                    <table id="sql-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
+

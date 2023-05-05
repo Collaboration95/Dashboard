@@ -5,33 +5,49 @@
     <link rel="stylesheet" href="dashboard.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="LatestBuild.css">
+    <script src="LatestBuild.js"></script>
     <title>MainPage</title>
 </head>
 <body>
-    <div id="dashboard">
-        <div class="dashboard-title">Dashboard</div>
-        <div class="dashboard-row" onclick="window.location.href='MainPage.html'">
-            <div class="dashboard-icons"><img src="icons/Home.png"> </div>
-            <div  class="dashboard-item">Home</div>
-        </div>   
-        <div class="dashboard-row selected" onclick="window.location.href='LatestBuild.html'" >
-            <div class="dashboard-icons"><img src="icons/Time.png"> </div>
-            <div onclick="window.location.href=''" class="dashboard-item">Latest Build</div>
-        </div>   
+    <div id="container-row">
+            <div id="dashboard">
+    <div class="dashboard-title">Dashboard</div>
+    <div class="dashboard-row " onclick="window.location.href='MainPage.html'">
+        <div class="dashboard-icons"><img src="icons/Home.png"> </div>
+        <div  class="dashboard-item">Home</div>
+    </div>   
+    <div class="dashboard-row selected" onclick="window.location.href='LatestBuild.html'" >
+        <div class="dashboard-icons"><img src="icons/Time.png"> </div>
+        <div onclick="window.location.href=''" class="dashboard-item">Latest Build</div>
+    </div>   
 
-        <div class="dashboard-row" onclick="window.location.href='Classes.html'" >
-            <div class="dashboard-icons"><img src="icons/ClipboardClipboard.png"> </div>
-            <div class="dashboard-item">Classes</div>
-        </div>   
-        <div class="dashboard-row" onclick="window.location.href='InstallerVersion.html'" >
-            <div class="dashboard-icons"><img src="icons/Folder-open.png"> </div>
-            <div class="dashboard-item">Installer Version</div>
-        </div>   
-        <div class="dashboard-row" >
-            <div class="dashboard-icons"><img src="icons/Settings-alt.png"> </div>
-            <div class="dashboard-logout">Log Out</div>
-        </div>   
-      </div>
+    <div class="dashboard-row" onclick="window.location.href='Classes.html'" >
+        <div class="dashboard-icons"><img src="icons/ClipboardClipboard.png"> </div>
+        <div class="dashboard-item">Classes</div>
+    </div>   
+    <div class="dashboard-row" onclick="window.location.href='InstallerVersion.html'" >
+        <div class="dashboard-icons"><img src="icons/Folder-open.png"> </div>
+        <div class="dashboard-item">Installer Version</div>
+    </div>   
+    <div class="dashboard-row" >
+        <div class="dashboard-icons"><img src="icons/Settings-alt.png"> </div>
+        <div class="dashboard-logout">Log Out</div>
+    </div>   
+            </div>
+
+        <div class="table">
+            <div class="pagetitle">Test Overview</div>
+            <div class="table-container">
+                <table id="sql-table">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

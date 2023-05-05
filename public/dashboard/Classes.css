@@ -1,0 +1,17 @@
+.container-row{
+    display:flex;
+    flex-direction: row;
+}
+
+.pagetitle{
+    font-size:25px;
+    margin:10px 0px 0px 0px;
+
+}
+.MainContent{
+display:flex;
+width:80vw;
+flex-direction:column;
+    align-items: center;
+ 
+}
