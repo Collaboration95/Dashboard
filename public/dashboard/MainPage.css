@@ -31,7 +31,13 @@
     width:73vw;
     height: 95vh;
 }
-
+.table-container {
+    /*display: block;*/
+    overflow-x: scroll;
+    overflow-y:scroll;
+    height: 800px;
+    transform: scale(1);
+  }
 .table{
     width:100%;
     padding:10px;
@@ -40,8 +46,17 @@
     text-align:center;
 }
 
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+  }
+
 .pagetitle{
     font-size:25px;
+    font:bolder;
+    color: #dc3545;
     margin:10px 0px 0px 0px;
 }
 
@@ -62,10 +77,5 @@ th {
 tr{
     height: 10px;
 }
-.table-container {
-  display: block;
-  overflow-x: scroll;
-  overflow-y:scroll;
-  height: 440px;
-  transform: scale(1);
-}
+
+ 

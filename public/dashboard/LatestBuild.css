@@ -17,8 +17,11 @@
 }
 .pagetitle{
     text-align: center;
+    font: bolder;
+    color: #dc3545;
     width:inherit;
 }
+
 .table{
     display:flex;
     flex-direction:column;
