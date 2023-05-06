@@ -57,16 +57,6 @@ const loadData = () => {
         // Render the table body
         const tableBody = document.querySelector('#sql-table tbody');
         tableBody.innerHTML = '';
-        // data.data.forEach(row => {
-        //   const tr = document.createElement('tr');
-        //   data.header.forEach(header => {
-  
-        //     const td = document.createElement('td');
-        //     td.textContent = row[header];
-        //     tr.appendChild(td);
-        //   });
-        //   tableBody.appendChild(tr);
-        // });
         data.data.forEach(row => {
           const tr = document.createElement('tr');
           data.header.forEach(header => {

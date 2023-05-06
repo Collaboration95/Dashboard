@@ -23,6 +23,7 @@ const buttonEvent = () => {
   fetch(`/api/installer-versions/${selectedInstallerVersion}`)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       // Render the table header if it doesn't exist
       const tableHeader = document.querySelector('#record-table thead');
       if (!tableHeader.querySelector('tr')) {

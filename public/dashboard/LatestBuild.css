@@ -9,17 +9,14 @@
     --SecondaryTitle-font:22px;
     --Button-font:20px;
     --TextBox-font:20px;
-
   }
   
-
-
 #container-row{
     display:flex;
     flex-direction:row;
 }
 .pagetitle{
-
+    text-align: center;
     width:inherit;
 }
 .table{
@@ -29,4 +26,56 @@
     margin:0 auto;
     text-align: center;
     align-items: center;
+}
+
+
+/* Code Break */
+.pagetitle{
+    font-size:25px;
+    margin:10px 0px 0px 0px;
+}
+
+.MainContent{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    width:74vw;
+
+
+}
+.table{
+    width:100%;
+    padding:10px;
+    height: fill;
+    justify-content:center;
+    text-align:center;
+}
+
+.pagetitle{
+    font-size:25px;
+    margin:10px 0px 0px 0px;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+	border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+tr{
+    height: 10px;
+}
+.tablecontainer{
+    overflow-x: scroll;
+    overflow-y:scroll;
+    width:73vw;
+    height: 400px;
 }

@@ -156,15 +156,15 @@ app.get('/api/longblob-data', (req, res) => {
   connection.query(sqlData, [id], (error, results, fields) => {
     if (error) throw error;
     console.log(results);
-    const longblobData = results[0].output; 
-    const textData = longblobData.toString("utf-8");
-    res.json({ data: textData });
+    const longblobData = results[0].output;
+    const base64String = longblobData.toString('base64');
+    res.json({ data: base64String });
   });
 });
 
 app.use(express.static('public'));
 
 // Start the server on port 3001 (or another port of your choice)
-app.listen(3000, () => {
+app.listen(3000,'0.0.0.0', () => {
     console.log('Server listening on port 3001');
 });
