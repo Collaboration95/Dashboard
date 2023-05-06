@@ -39,6 +39,8 @@
 .pagetitle{
     font-size:25px;
     margin:10px 0px 0px 0px;
+    font: bolder;
+    color: #dc3545;
 }
 
 th, td {

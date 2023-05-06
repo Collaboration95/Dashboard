@@ -36,44 +36,30 @@ function drawChart(data) {
 }
 
 const loadData = () => {
-    fetch('/api/sql-data')
+    fetch('/api/sql-data1')
       .then(response => response.json())
       .then(data => {
         sqlData = data;
         // Render the table header if it doesn't exist
-        console.log("loadData");
-        const tableHeader = document.querySelector('#sql-table thead');
-        if (!tableHeader.querySelector('tr')) {
-          
-          const headerRow = document.createElement('tr');
-          data.header.forEach(headerText => {
-            const th = document.createElement('th');
-            th.textContent = headerText;
-            headerRow.appendChild(th);
-          });
-          tableHeader.appendChild(headerRow);
-        }
-  
-        // Render the table body
+        console.log("loadData1");
+        console.log(sqlData);
+        console.log(sqlData.type);
         const tableBody = document.querySelector('#sql-table tbody');
         tableBody.innerHTML = '';
-        data.data.forEach(row => {
-          const tr = document.createElement('tr');
-          data.header.forEach(header => {
-            const td = document.createElement('td');
-            if (header === 'output') {
-              const link = document.createElement('a');
-              link.textContent = 'View';
-              link.href = `/api/longblob-data?id=${row['id']}`;
-              td.appendChild(link);
-            } else {
-              td.textContent = row[header];
-            }
-            tr.appendChild(td);
+        data.data.forEach(rowData => {
+          // create a new table row element
+          const row = document.createElement('tr');
+          // create a table cell element for each data value
+          Object.values(rowData).forEach(value => {
+            const cell = document.createElement('td');
+            cell.textContent = value;
+            row.appendChild(cell);
           });
-          tableBody.appendChild(tr);
+      
+          // add the new row to the table body
+          tableBody.appendChild(row);
         });
-        
+
       })
       .catch(error => console.error(error));
 };

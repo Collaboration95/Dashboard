@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="icons/graph.png" type="image/x-icon">
     <link rel="stylesheet" href="dashboard.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
     <div id="container-row">
             <div id="dashboard">
     <div class="dashboard-title">Dashboard</div>
-    <div class="dashboard-row " onclick="window.location.href='MainPage.html'">
+    <div class="dashboard-row " onclick="window.location.href='mainpage.html'">
         <div class="dashboard-icons"><img src="icons/Home.png"> </div>
         <div  class="dashboard-item">Home</div>
     </div>   
@@ -37,11 +38,25 @@
             </div>
 
         <div class="MainContent">
-            <div class="pagetitle">Installer Version</div>
+            <div class="pagetitle">Result in latest build</div>
             <div class="tablecontainer">
             <table id="record-table">
-              <thead>
-              </thead>
+                <thead>
+                    <tr>
+                      <th>Test Name</th>
+                      <th>Test Category</th>
+                      <th>Class Name</th>
+                      <th>Platform</th>
+                      <th>Job Name</th>
+                      <th>Job Build Number</th>
+                      <th>Installer Branch</th>
+                      <th>Installer Version</th>
+                      <th>Duration</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Outcome</th>
+                    </tr>
+                </thead>
               <tbody></tbody>
             </table>
           </div>
