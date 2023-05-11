@@ -3,8 +3,6 @@ const tableBodyEl = document.querySelector('#record-table tbody');
 const classNameSelect = document.getElementById('class-name');
 const searchBtn = document.getElementById('search-btn');
 
-
-
 // Fetch unique class names from the server
 fetch('/api/class-names')
   .then(response => response.json())
@@ -73,7 +71,17 @@ fetch('/api/class-names')
             const tr = document.createElement('tr');
             data.header.forEach(header => {
               const td = document.createElement('td');
-              td.textContent = row[header];
+              if(header=='output'){
+                const link = document.createElement('a');
+                link.textContent= 'View Output';
+                link.href = `/api/longblob-data?id=${row['id']}`;
+                link.target = '_blank';
+                td.appendChild(link);
+              }
+              else{
+                td.textContent = row[header];
+              }
+              
               tr.appendChild(td);
             });
             passTableBody.appendChild(tr);
@@ -82,7 +90,16 @@ fetch('/api/class-names')
             const tr = document.createElement('tr');
             data.header.forEach(header => {
               const td = document.createElement('td');
-              td.textContent = row[header];
+              if(header=='output'){
+                const link = document.createElement('a');
+                link.textContent= 'View Output';
+                link.href = `/api/longblob-data?id=${row['id']}`;
+                link.target = '_blank';
+                td.appendChild(link);
+              }
+              else{
+                td.textContent = row[header];
+              }
               tr.appendChild(td);
             });
             failTableBody.appendChild(tr);
@@ -105,176 +122,7 @@ fetch('/api/class-names')
       .catch(error => console.error(error));
   }
     
-  // const buttonEvent = () => {
-  //   const selectedClassName = classNameSelect.value;
-  //   // Fetch records for selected class name from the server
-  //   fetch(`/api/class-names/${selectedClassName}`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       sqlData = data;
-  //       console.log(data);
-  //       // Render the table headers if they don't exist
-  //       if (!passTableHeader.querySelector('th')) {
-  //         data.header.forEach(headerText => {
-  //           const th = document.createElement('th');
-  //           th.textContent = headerText;
-  //           passTableHeader.appendChild(th);
-  //         });
-  //       }
-  
-  //       if (!failTableHeader.querySelector('th')) {
-  //         data.header.forEach(headerText => {
-  //           const th = document.createElement('th');
-  //           th.textContent = headerText;
-  //           failTableHeader.appendChild(th);
-  //         });
-  //       }
-  
-  //       // Render the table bodies
-  //       passTableBody.innerHTML = '';
-  //       failTableBody.innerHTML = '';
-  //       data.data.forEach(row => {
-  //         if (row.outcome === 'Passed') {
-  //           const tr = document.createElement('tr');
-  //           data.header.forEach(header => {
-  //             const td = document.createElement('td');
-  //             td.textContent = row[header];
-  //             tr.appendChild(td);
-  //           });
-  //           passTableBody.appendChild(tr);
-  //         } else if (row.outcome === 'Failed') {
-  //           const tr = document.createElement('tr');
-  //           data.header.forEach(header => {
-  //             const td = document.createElement('td');
-  //             td.textContent = row[header];
-  //             tr.appendChild(td);
-  //           });
-  //           failTableBody.appendChild(tr);
-  //         }
-  //       });
-  //     })
-  //     .catch(error => console.error(error));
-  // }
-  
-  // const buttonEvent = () => {
-  //   const selectedClassName = classNameSelect.value;
-  //   const passTableContainer = document.querySelector('#pass-table-container');
-  //   const failTableContainer = document.querySelector('#fail-table-container');
-  
-  //   // Fetch records for selected class name from the server for outcome = passed
-  //   fetch(`/api/class-names/${selectedClassName}?outcome=passed`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data.data.length > 0) {
-  //         // Render the passed table header if it doesn't exist
-  //         const passTableHeader = passTableContainer.querySelector('thead');
-  //         if (!passTableHeader.querySelector('tr')) {
-  //           const headerRow = document.createElement('tr');
-  //           data.header.forEach(headerText => {
-  //             const th = document.createElement('th');
-  //             th.textContent = headerText;
-  //             headerRow.appendChild(th);
-  //           });
-  //           passTableHeader.appendChild(headerRow);
-  //         }
-  
-  //         // Render the passed table body
-  //         const passTableBody = passTableContainer.querySelector('tbody');
-  //         passTableBody.innerHTML = '';
-  //         data.data.forEach(row => {
-  //           const tr = document.createElement('tr');
-  //           data.header.forEach(header => {
-  //             const td = document.createElement('td');
-  //             td.textContent = row[header];
-  //             tr.appendChild(td);
-  //           });
-  //           passTableBody.appendChild(tr);
-  //         });
-  
-  //         passTableContainer.style.display = 'block';
-  //       } else {
-  //         passTableContainer.style.display = 'none';
-  //       }
-  //     })
-  //     .catch(error => console.error(error));
-  
-  //   // Fetch records for selected class name from the server for outcome = failed
-  //   fetch(`/api/class-names/${selectedClassName}?outcome=failed`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data.data.length > 0) {
-  //         // Render the failed table header if it doesn't exist
-  //         const failTableHeader = failTableContainer.querySelector('thead');
-  //         if (!failTableHeader.querySelector('tr')) {
-  //           const headerRow = document.createElement('tr');
-  //           data.header.forEach(headerText => {
-  //             const th = document.createElement('th');
-  //             th.textContent = headerText;
-  //             headerRow.appendChild(th);
-  //           });
-  //           failTableHeader.appendChild(headerRow);
-  //         }
-  
-  //         // Render the failed table body
-  //         const failTableBody = failTableContainer.querySelector('tbody');
-  //         failTableBody.innerHTML = '';
-  //         data.data.forEach(row => {
-  //           const tr = document.createElement('tr');
-  //           data.header.forEach(header => {
-  //             const td = document.createElement('td');
-  //             td.textContent = row[header];
-  //             tr.appendChild(td);
-  //           });
-  //           failTableBody.appendChild(tr);
-  //         });
-  
-  //         failTableContainer.style.display = 'block';
-  //       } else {
-  //         failTableContainer.style.display = 'none';
-  //       }
-  //     })
-  //     .catch(error => console.error(error));
-  // }
-  
-  
-// const buttonEvent = () => {
-//   const selectedClassName = classNameSelect.value;
-//   // Fetch records for selected class name from the server
-//   fetch(`/api/class-names/${selectedClassName}`)
-//     .then(response => response.json())
-//     .then(data => {
-//       sqlData = data;
-
-//       // Render the table header if it doesn't exist
-//       const tableHeader = document.querySelector('#record-table thead');
-//       if (!tableHeader.querySelector('tr')) {
-        
-//         const headerRow = document.createElement('tr');
-//         data.header.forEach(headerText => {
-//           const th = document.createElement('th');
-//           th.textContent = headerText;
-//           headerRow.appendChild(th);
-//         });
-//         tableHeader.appendChild(headerRow);
-//       }
-
-//       // Render the table body
-//       tableBodyEl.innerHTML = '';
-//       data.data.forEach(row => {
-//         const tr = document.createElement('tr');
-//         data.header.forEach(header => {
-
-//           const td = document.createElement('td');
-//           td.textContent = row[header];
-//           tr.appendChild(td);
-//         });
-//         tableBodyEl.appendChild(tr);
-//       });
-//     })
-//     .catch(error => console.error(error));
-// }
 searchBtn.addEventListener('click',buttonEvent);
-
 
 if (sessionStorage.getItem("loggedIn")) {
   searchBtn.addEventListener('click',buttonEvent);
@@ -282,5 +130,3 @@ if (sessionStorage.getItem("loggedIn")) {
 else{
   window.location.href='http://localhost:3000/';
 }
-
-

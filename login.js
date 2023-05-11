@@ -2,14 +2,14 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
-const table_name ={ login:"user_login" ,main:"regressionresult"};
+const table_name ={ login:"login" ,main:"regressionresult"};
 
 // Set up a MySQL connection
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'admin',
-    database: 'test'
+    password: 'Mcqueen@$95',
+    database: 'test_db'
 });
 
 // Use middleware to parse HTTP POST request data
@@ -197,8 +197,8 @@ app.get('/api/longblob-data', (req, res) => {
     if (error) throw error;
     console.log(results);
     const longblobData = results[0].output;
-    const base64String = longblobData.toString('base64');
-    res.json({ data: base64String });
+    const textData = longblobData.toString('utf8');
+    res.json({ data: textData});
   });
 });
 
