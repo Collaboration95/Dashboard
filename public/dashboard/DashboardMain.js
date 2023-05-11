@@ -41,21 +41,34 @@ const loadData = () => {
       .then(data => {
         sqlData = data;
         // Render the table header if it doesn't exist
-        console.log("loadData1");
-        console.log(sqlData);
-        console.log(sqlData.type);
         const tableBody = document.querySelector('#sql-table tbody');
         tableBody.innerHTML = '';
         data.data.forEach(rowData => {
           // create a new table row element
           const row = document.createElement('tr');
+
           // create a table cell element for each data value
-          Object.values(rowData).forEach(value => {
-            const cell = document.createElement('td');
-            cell.textContent = value;
-            row.appendChild(cell);
-          });
-      
+          Object.keys(rowData).forEach(key=>{
+            const cell= document.createElement('td');
+            if (key=='output'){
+              const link = document.createElement('a');
+              link.textContent = 'View';
+              link.href = `/api/longblob-data-main?id=${rowData['id']}`;
+              link.target = '_blank';
+              console.log(rowData);
+              cell.appendChild(link);
+              row.appendChild(cell);
+            }
+            else if(key=='id'){
+              
+            }
+            else{
+              cell.textContent = rowData[key];
+              row.appendChild(cell);
+            }
+            
+          })
+
           // add the new row to the table body
           tableBody.appendChild(row);
         });

@@ -40,7 +40,7 @@ app.get('/api/sql-chart', (req, res) => {
 
 app.get('/api/sql-data1', (req, res) => {
  
-  const sqlData = 'SELECT testName, TestCategory, className, platform, job_name, job_buildnumber, installer_branch, installer_version, duration, startTime, endTime, outCome FROM  '+table_name.main + ' ORDER BY outcome';
+  const sqlData = 'SELECT testName, TestCategory, className, platform, job_name, job_buildnumber, installer_branch, installer_version, duration, startTime, endTime, outCome,output,id FROM  '+table_name.main + ' ORDER BY outcome';
   
     connection.query(sqlData, (error, dataResults, fields) => {
       if (error) throw error;
@@ -150,30 +150,10 @@ app.get('/api/installer-versions/:installerVersion', (req, res) => {
     res.json(data);
   });
 });
-/*
-app.get('/api/latest-builds', (req, res) => {
-    const sqlQuery = `
-        SELECT *
-        FROM ${table_name.main} t1
-        JOIN (
-            SELECT installer_branch, MAX(job_buildnumber) AS max_buildnumber
-            FROM ${table_name.main}
-            GROUP BY installer_branch
-        ) t2
-        ON t1.installer_branch = t2.installer_branch
-        AND t1.job_buildnumber = t2.max_buildnumber
-    `;
-    
-    connection.query(sqlQuery, (error, results, fields) => {
-        if (error) throw error;
-        const data = results;
-        res.json(data);
-    });
-});*/
 
 app.get('/api/latest-builds', (req, res) => {
  const sqlQuery = `
-      SELECT t1.testName, t1.TestCategory, t1.className, t1.platform, t1.job_name, t1.job_buildnumber, t1.installer_branch, t1.installer_version, t1.duration, t1.startTime, t1.endTime, t1.outCome FROM ${table_name.main} t1
+      SELECT t1.testName, t1.TestCategory, t1.className, t1.platform, t1.job_name, t1.job_buildnumber, t1.installer_branch, t1.installer_version, t1.duration, t1.startTime, t1.endTime, t1.outCome,t1.output,t1.id FROM ${table_name.main} t1
       JOIN (
           SELECT installer_branch, MAX(job_buildnumber) AS max_buildnumber
           FROM ${table_name.main}
@@ -196,11 +176,26 @@ app.get('/api/longblob-data', (req, res) => {
   connection.query(sqlData, [id], (error, results, fields) => {
     if (error) throw error;
     console.log(results);
+    // const longblobData = results[0].output;
     const longblobData = results[0].output;
     const textData = longblobData.toString('utf8');
     res.json({ data: textData});
   });
 });
+app.get('/api/longblob-data-main', (req, res) => {
+  const id = req.query.id;
+  const sqlData = 'SELECT output FROM ' + table_name.main + ' WHERE id = ?';
+  connection.query(sqlData, [id], (error, results, fields) => {
+    if (error) throw error;
+    console.log(results);
+    // const longblobData = results[0].output;
+    const longblobData = results[0].output;
+    const textData = longblobData.toString('utf8');
+    res.json({ data: textData});
+  });
+});
+
+
 
 app.use(express.static('public'));
 
